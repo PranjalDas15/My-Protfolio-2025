@@ -17,6 +17,7 @@ const index = () => {
   const dispatch = useAppDispatch();
   const { isProjectOpen } = useAppSelector((state) => state.project);
   const containerRef = useRef(null);
+  const headingRef = useRef(null);
   const projectRef = useRef([]);
   const selectedProjecttRef = useRef(null);
   const [isOpen, setIsOpen] = useState(false);
@@ -38,8 +39,36 @@ const index = () => {
     });
   });
 
+  useGSAP(() => {
+    gsap.set(headingRef.current, {
+      opacity: 0,
+      filter: "blur(10px)",
+    });
+    if (isProjectOpen) {
+      gsap.fromTo(
+        headingRef.current,
+        {
+          opacity: 1,
+          filter: "blur(0)",
+        },
+        {
+          opacity: 0,
+          filter: "blur(10px)",
+          duration: 1,
+        }
+      );
+    } else {
+      gsap.to(headingRef.current, {
+        opacity: 1,
+        filter: "blur(0px)",
+        duration: 1,
+      });
+    }
+  }, [isProjectOpen]);
+
   const handleOpenProject = (p) => {
     setSelectedProject(p);
+    setIsOpen(true)
     gsap.to(window, {
       scrollTo: "#works",
       onComplete: () => {
@@ -63,41 +92,23 @@ const index = () => {
 
         //animation for project details
         gsap.set(selectedProjecttRef.current, {
-          opacity: 0,
-          scale: 0.95,
-          y: 20,
-          filter: "blur(10px)",
           pointerEvents: "none",
         });
         gsap.to(selectedProjecttRef.current, {
-          opacity: 1,
-          scale: 1,
-          y: 0,
-          filter: "blur(0px)",
           pointerEvents: "auto",
-          duration: 1,
-          delay: 1,
         });
       },
     });
   };
 
   const handleCloseProject = () => {
+    setIsOpen(false)
     //animation for project details
     gsap.set(selectedProjecttRef.current, {
-      opacity: 1,
-      scale: 1,
-      y: 0,
-      filter: "blur(0px)",
       pointerEvents: "auto",
     });
     gsap.to(selectedProjecttRef.current, {
-      opacity: 0,
-      scale: 0.95,
-      y: 20,
-      filter: "blur(10px)",
       pointerEvents: "none",
-      duration: 0.5,
     });
 
     // animation for project list
@@ -127,9 +138,11 @@ const index = () => {
         ref={containerRef}
         className="relative w-screen h-screen flex justify-center items-center px-10 pt-[100px]"
       >
-        <Heading />
+        <div ref={headingRef} className="absolute top-5 w-full">
+          <Heading />
+        </div>
 
-        <div className="w-full h-[70%] flex flex-col items-center justify-center">
+        <div className="relative w-full h-[70%] flex flex-col items-center justify-center">
           {projects.map((p, index) => (
             <button
               ref={(el) => (projectRef.current[index] = el)}
@@ -155,11 +168,13 @@ const index = () => {
         </div>
 
         {selectedProject && (
-          <ProjectDetails
-            ref={selectedProjecttRef}
+          <div ref={selectedProjecttRef} className="absolute top-0 left-0 w-full h-full flex items-center justify-center">
+            <ProjectDetails
+            isOpen={isOpen}
             project={selectedProject}
             onClose={handleCloseProject}
           />
+          </div>
         )}
       </div>
     </div>

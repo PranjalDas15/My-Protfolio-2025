@@ -14,42 +14,50 @@ const Heading = () => {
 
   useGSAP(() => {
     gsap.set(headingRef.current, {
-      opacity: 0,
-      filter: "blur(10px)",
-      y: "100%",
-    });
+    opacity: 0,
+    filter: "blur(10px)",
+    y: "100%",
+    immediateRender: true
+  });
     gsap.to(headingRef.current, {
-      opacity: 1,
-      filter: "blur(0px)",
-      y: "0%",
-      duration: 2,
-      scrollTrigger: {
-        trigger: headingRef.current,
-        start: "top 80%",
-        end: "top center",
-        scrub: 1,
-      },
-    });
+    opacity: 1,
+    filter: "blur(0px)",
+    y: "0%",
+    duration: 2,
+    scrollTrigger: {
+      trigger: headingRef.current,
+      start: "top 80%",
+      end: "top center",
+      scrub: 1,
+    },
+  });
   });
 
-  useGSAP(() => {
-    if (isProjectOpen) {
-      gsap.to(headingRef.current, {
-        opacity: 0,
-        filter: "blur(10px)",
-        duration: 1,
-      });
-    } else {
-      gsap.to(headingRef.current, {
-        opacity: 1,
-        filter: "blur(0px)",
-        duration: 1,
-      });
-    }
-  }, [isProjectOpen]);
+  // useGSAP(() => {
+  //   gsap.set(headingRef.current, {
+  //     opacity: 0,
+  //     filter: 'blur(10px)'
+  //   })
+  //   if (isProjectOpen) {
+  //     gsap.fromTo(headingRef.current, {
+  //       opacity: 1,
+  //       filter: 'blur(0)'
+  //     },{
+  //       opacity: 0,
+  //       filter: "blur(10px)",
+  //       duration: 1,
+  //     });
+  //   } else {
+  //     gsap.to(headingRef.current, {
+  //       opacity: 1,
+  //       filter: "blur(0px)",
+  //       duration: 1,
+  //     });
+  //   }
+  // }, [isProjectOpen]);
 
   return (
-    <div ref={headingRef} className="absolute top-5 left-0">
+    <div ref={headingRef} className="opacity-0">
       <Marquee loop={0} speed={100}>
         {Array.from({ length: 20 }).map((_, index) => (
           <div
