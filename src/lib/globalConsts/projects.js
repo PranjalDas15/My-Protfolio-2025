@@ -92,7 +92,8 @@ export const projects = [
       "I was responsible for training the machine learning model and building the backend to integrate it with the web application.",
     ],
     link: {
-      github: 'https://github.com/PranjalDas15/COPD-College'
+      github: 'https://github.com/PranjalDas15/COPD-College',
+      deploy: "",
     }
   },
   {

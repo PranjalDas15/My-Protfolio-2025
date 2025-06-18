@@ -105,32 +105,25 @@ const ProjectDetails = ({ project, onClose, isOpen }) => {
 
           <div ref={(el) => (contentRef.current[4] = el)}>
             <div className="flex items-center gap-2 pt-5 text-[0.9rem] xl:text-[1.2rem] font-light">
-              {project.links.github !== '' ? (
-                <Link target="_blank" href={project.links.github}>
-                  <Button label={"Github"} hoverText={"Redirect to Github"} />
-                </Link>
-              ):(<></>)}
-
-              {project.links.deploy !== '' ? (
-                <Link target="_blank" href={project.links.deploy}>
-                  <Button label={"Visit Site"} hoverText={"Redirect to Site"} />
-                </Link>
-              ): (<></>)}
+              <Link target="_blank" href={project?.links?.github}>
+                <Button label={"Github"} hoverText={"Redirect to Github"} />
+              </Link>
+              <Link target="_blank" href={project?.links?.deploy}>
+                <Button label={"Visit Site"} hoverText={"Redirect to Site"} />
+              </Link>
               <div className="md:hidden" onClick={onClose}>
                 <Button label={"Close"} hoverText={"Close Tab"} />
               </div>
             </div>
-            {project.links.deploy !== '' ? (
-              <div className="flex items-center gap-1 text-[0.8rem] text-red-400">
-                <div>
-                  <AlertTriangle size={12} />
-                </div>
-                <p className="py-2 font-extralight">
-                  The visited link might take some time to load as they are
-                  uploaded on free servers. Sorry about that.
-                </p>
+            <div className="flex items-center gap-1 text-[0.8rem] text-red-400">
+              <div>
+                <AlertTriangle size={12} />
               </div>
-            ): (<></>)}
+              <p className="py-2 font-extralight">
+                The visited link might take some time to load as they are
+                uploaded on free servers. Sorry about that.
+              </p>
+            </div>
           </div>
         </div>
 
