@@ -3,7 +3,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import React, { useRef } from "react";
 import Icons from "./Icons";
-import { familiar, workwith } from "@/lib/globalConsts/projects";
+import { backendAndDatabases, extras, familiar, frontend, languages, workwith } from "@/lib/globalConsts/projects";
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -34,8 +34,10 @@ const Skills = () => {
           My Skills
         </h3>
       </div>
-      <Icons heading={"These I work with"} skills={workwith} />
-      <Icons heading={"These I'm familiar with"} skills={familiar} />
+      <Icons heading={"Frontend"} skills={frontend} />
+      <Icons heading={"Backend and Databases"} skills={backendAndDatabases} />
+      <Icons heading={"Languages"} skills={languages} />
+      <Icons heading={"Extra or Familiar skills"} skills={extras} />
     </div>
   );
 };

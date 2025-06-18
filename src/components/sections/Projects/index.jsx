@@ -136,29 +136,29 @@ const index = () => {
     <div>
       <div
         ref={containerRef}
-        className="relative w-screen h-screen flex justify-center items-center px-10 pt-[100px]"
+        className="relative w-screen h-screen flex justify-center items-center px-2 md:px-10 md:pt-[100px]"
       >
-        <div ref={headingRef} className="absolute top-5 w-full">
+        <div ref={headingRef} className="absolute top-[50px] md:top-5 w-full">
           <Heading />
         </div>
 
-        <div className="relative w-full h-[70%] flex flex-col items-center justify-center">
+        <div className="relative w-full h-[60%] md:h-[70%] flex flex-col items-center justify-center">
           {projects.map((p, index) => (
             <button
               ref={(el) => (projectRef.current[index] = el)}
               onClick={() => handleOpenProject(p)}
               onMouseEnter={() => mouseEnterHandler("Open Project")}
               onMouseLeave={mouseLeaveHandler}
-              className="relative w-full h-full border-b flex items-center justify-between px-10 group cursor-none"
+              className="relative w-full h-full border-b flex items-center justify-between lg:px-10 group cursor-none"
               key={index}
             >
               <div className="z-10">
-                <p className="text-[5rem] xl:text-[6rem] leading-0 opacity-50 font-bold group-hover:translate-x-5 group-hover:text-orange-400 dark:group-hover:text-sky-400 transition-all duration-400 z-10">
+                <p className="text-[4rem] md:text-[5rem] lg:text-[6rem] leading-0 opacity-50 font-bold group-hover:translate-x-5 group-hover:text-orange-400 dark:group-hover:text-sky-400 transition-all duration-400 z-10">
                   0{index + 1}
                 </p>
               </div>
               <div className="z-10">
-                <p className="text-[2rem] xl:text-[2.5rem] text-end opacity-80 font-light group-hover:-translate-x-5 group-hover:text-orange-400 dark:group-hover:text-sky-400 transition-all duration-400 z-10">
+                <p className="text-[1.5rem] md:text-[2rem] lg:text-[2.5rem] text-end opacity-80 font-light group-hover:-translate-x-5 group-hover:text-orange-400 dark:group-hover:text-sky-400 transition-all duration-400 z-10">
                   {p.name.toUpperCase()}
                 </p>
               </div>

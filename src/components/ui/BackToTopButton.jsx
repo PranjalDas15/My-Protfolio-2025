@@ -11,6 +11,7 @@ gsap.registerPlugin(ScrollTrigger, ScrollToPlugin)
 
 const BackToTopButton = () => {
   const { scroll } = useAppSelector((state) => state.scroll);
+  const { isProjectOpen } = useAppSelector((state) => state.project);
   const { mouseEnterHandler, mouseLeaveHandler } = useCursor();
   const buttonRef = useRef(null);
 
@@ -40,7 +41,7 @@ const BackToTopButton = () => {
   return (
     <div
       ref={buttonRef}
-      className="fixed bottom-12 left-1/2 -translate-x-1/2 z-[999]"
+      className={`${isProjectOpen ? 'hidden' : 'block'} fixed bottom-12 left-1/2 -translate-x-1/2 z-[999]`}
     >
       <button
         onClick={()=>{gsap.to(window, {

@@ -2,7 +2,8 @@ import { useCursor } from "@/app/utils/customHooks/useCursor";
 import Button from "@/components/ui/Button";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
-import { Copy, Expand, Minus, X } from "lucide-react";
+import { AlertTriangle, Copy, Expand, Minus, X } from "lucide-react";
+import Link from "next/link";
 import React, { useRef } from "react";
 
 const ProjectDetails = ({ project, onClose, isOpen }) => {
@@ -10,50 +11,59 @@ const ProjectDetails = ({ project, onClose, isOpen }) => {
   const containerRef = useRef(null);
   const contentRef = useRef([]);
   useGSAP(() => {
-    if(isOpen) {
-      gsap.fromTo(containerRef.current, {
-        scale: 0.95,
-        filter: 'blur(10px)',
-        opacity: 0,
-      }, {
-        scale: 1,
-        filter: 'blur(0px)',
-        opacity: 1,
-        delay: 1
-      })
-      gsap.fromTo(contentRef.current, {
-      opacity: 0,
-      pointerEvents: 'none',
-      filter: "blur(10px)",
-    }, {
-      opacity: 1,
-      filter: "blur(0px)",
-      pointerEvents: 'auto',
-      duration: 1,
-      stagger: 0.1,
-      delay: 1
-    });
+    if (isOpen) {
+      gsap.fromTo(
+        containerRef.current,
+        {
+          scale: 0.95,
+          filter: "blur(10px)",
+          opacity: 0,
+        },
+        {
+          scale: 1,
+          filter: "blur(0px)",
+          opacity: 1,
+          delay: 1,
+        }
+      );
+      gsap.fromTo(
+        contentRef.current,
+        {
+          opacity: 0,
+          pointerEvents: "none",
+          filter: "blur(10px)",
+        },
+        {
+          opacity: 1,
+          filter: "blur(0px)",
+          pointerEvents: "auto",
+          duration: 1,
+          stagger: 0.1,
+          delay: 1,
+        }
+      );
     } else {
       gsap.to(containerRef.current, {
         scale: 0.95,
-        filter: 'blur(10px)',
+        filter: "blur(10px)",
         opacity: 0,
-      })
+      });
       gsap.to(contentRef.current, {
-      opacity: 0,
-      filter: "blur(10px)",
-      pointerEvents: 'none',
-      duration: 1,
-    });
+        opacity: 0,
+        filter: "blur(10px)",
+        pointerEvents: "none",
+        duration: 1,
+      });
     }
   }, [isOpen]);
   return (
     <div
       ref={containerRef}
+      id="project-container"
       className="absolute top-0 left-0 w-full h-full flex items-center justify-center"
     >
-      <div className="relative w-[70%] xl:w-[85%] h-[80%] flex flex-col-reverse xl:flex-row xl:justify-between">
-        <div className="w-full h-[60%] xl:w-[50%] xl:h-full flex flex-col justify-center space-y-2">
+      <div className="relative w-[90%] xl:w-[95%] 2xl:w-[85%] h-[80%] flex flex-col-reverse xl:flex-row justify-between lg:gap-5">
+        <div className="w-full h-fit lg:h-full flex flex-col justify-center space-y-2">
           <h2
             ref={(el) => (contentRef.current[0] = el)}
             className="text-[2rem] xl:text-[2.5rem] font-light"
@@ -93,32 +103,43 @@ const ProjectDetails = ({ project, onClose, isOpen }) => {
             ))}
           </ul>
 
-          <div
-            ref={(el) => (contentRef.current[4] = el)}
-            className="flex items-center gap-2 pt-5 text-[0.9rem] xl:text-[1.2rem] font-light"
-          >
-            <Button label={"Github"} hoverText={"Redirect to Github"} />
-            <Button label={"Visit Site"} hoverText={"Redirect to Site"} />
+          <div ref={(el) => (contentRef.current[4] = el)}>
+            <div className="flex items-center gap-2 pt-5 text-[0.9rem] xl:text-[1.2rem] font-light">
+              {project.links.github !== '' ? (
+                <Link target="_blank" href={project.links.github}>
+                  <Button label={"Github"} hoverText={"Redirect to Github"} />
+                </Link>
+              ):(<></>)}
+
+              {project.links.deploy !== '' ? (
+                <Link target="_blank" href={project.links.deploy}>
+                  <Button label={"Visit Site"} hoverText={"Redirect to Site"} />
+                </Link>
+              ): (<></>)}
+              <div className="md:hidden" onClick={onClose}>
+                <Button label={"Close"} hoverText={"Close Tab"} />
+              </div>
+            </div>
+            {project.links.deploy !== '' ? (
+              <div className="flex items-center gap-1 text-[0.8rem] text-red-400">
+                <div>
+                  <AlertTriangle size={12} />
+                </div>
+                <p className="py-2 font-extralight">
+                  The visited link might take some time to load as they are
+                  uploaded on free servers. Sorry about that.
+                </p>
+              </div>
+            ): (<></>)}
           </div>
         </div>
 
         <div
           ref={(el) => (contentRef.current[5] = el)}
-          className="relative w-full h-[40%] xl:w-[50%] xl:h-full flex justify-start items-center"
+          className="relative w-full h-full md:w-[80%] lg:w-2/3 xl:w-full  flex justify-start items-center"
         >
-          <div
-            onMouseEnter={() => mouseEnterHandler("Close")}
-            onMouseLeave={mouseLeaveHandler}
-            onClick={() => onClose()}
-            className="absolute -top-10 xl:top-0 right-0"
-          >
-            <X
-              size={30}
-              className="hover:scale-110 transition-all duration-100"
-            />
-          </div>
-          <div className="w-[90%] h-[300px] xl:h-[400px] xl:w-full overflow-hidden shadow-[0_1px_30px_10px_rgba(0,0,0,0.1)] rounded-2xl">
-            <div className="w-full h-full">
+          <div className="overflow-hidden shadow-[0_1px_30px_10px_rgba(0,0,0,0.1)] rounded-2xl">
+            <div className="aspect-video">
               <img
                 src={project.images[0]}
                 alt=""
@@ -126,6 +147,17 @@ const ProjectDetails = ({ project, onClose, isOpen }) => {
               />
             </div>
           </div>
+        </div>
+        <div
+          onMouseEnter={() => mouseEnterHandler("Close")}
+          onMouseLeave={mouseLeaveHandler}
+          onClick={() => onClose()}
+          className="hidden md:block absolute -top-10 xl:top-0 right-0"
+        >
+          <X
+            size={30}
+            className="hover:scale-110 transition-all duration-100"
+          />
         </div>
       </div>
     </div>

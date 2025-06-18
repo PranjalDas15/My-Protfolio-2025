@@ -40,10 +40,11 @@ const HomeClient = () => {
 
   useEffect(() => {
     if (smootherRef.current) {
-      setTimeout(()=>{
+      setTimeout(() => {
         smootherRef.current.paused(isProjectOpen);
-      }, 2000)
+      }, 2000);
     }
+
   }, [isProjectOpen]);
 
   useGSAP(() => {
@@ -53,12 +54,11 @@ const HomeClient = () => {
       {
         overflow: "auto",
         height: "auto",
-        // delay: 2,
+        delay: 2,
         duration: 1,
       }
     );
   });
-
   return (
     <>
       <div
@@ -66,9 +66,11 @@ const HomeClient = () => {
         className="relative w-screen h-screen overflow-hidden"
       >
         <BackToTopButton />
-        <Navbar />
+        <div className={`${isProjectOpen ? 'opacity-0 pointer-events-none' : 'opacity-100 pointer-events-auto'} fixed top-0 left-0 w-screen h-[50px] z-[999]`}>
+          <Navbar />
+        </div>
         <Cursor />
-        <BgComponent/>
+        <BgComponent />
         <div ref={contentRef} id="home" className="relative overflow-hidden">
           <section
             id="hero"

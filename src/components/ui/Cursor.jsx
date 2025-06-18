@@ -1,11 +1,9 @@
 "use client";
 
-import { useCursor } from "@/app/utils/customHooks/useCursor";
-import { useAppDispatch, useAppSelector } from "@/lib/redux/hooks";
-import { setText } from "@/lib/redux/slices/mouseSlice";
+import { useAppSelector } from "@/lib/redux/hooks";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
-import { useEffect, useRef, useState } from "react";
+import {useRef } from "react";
 
 const Cursor = () => {
   const cursorRef = useRef(null);
@@ -54,7 +52,7 @@ const Cursor = () => {
   return (
     <div
       ref={cursorRef}
-      className="fixed top-0 left-0 pointer-events-none z-[999]"
+      className="hidden lg:block fixed top-0 left-0 pointer-events-none z-[999]"
     >
       <div
         ref={cursorBodyRef}

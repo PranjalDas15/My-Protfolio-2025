@@ -8,7 +8,7 @@ const Button = ({ label, hoverText, onClickHandler }) => {
       onClick={onClickHandler}
       onMouseEnter={() => mouseEnterHandler(hoverText)}
       onMouseLeave={mouseLeaveHandler}
-      className="relative w-[90px] xl:w-[120px] h-[35px] xl:h-[45px] border rounded-full overflow-hidden group"
+      className="relative w-[90px] xl:w-[120px] h-[35px] xl:h-[45px] border rounded-full overflow-hidden cursor-none group"
     >
       <p className="relative group-hover:text-amber-50 dark:group-hover:text-zinc-900 z-10 transition-all duration-400">
         {label}

@@ -15,6 +15,10 @@
   --font-parisienne: var(--font-parisienne);
   --font-robotoc: var(--font-robotoc);
 }
+
+::-webkit-scrollbar {
+  width: 0;
+}
 /* 
 @media (prefers-color-scheme: dark) {
   :root {

@@ -142,41 +142,39 @@ const Hero = () => {
         ref={contentRef}
         className="absolute top-1/3 left-1/2 -translate-1/2 h-fit w-fit z-10"
       >
-        <div className="overflow-hidden h-fit w-fit">
           <p
             ref={nameRef}
             onMouseEnter={() => {
               mouseEnterHandler("Hello! My name is Pranjal Das");
             }}
             onMouseLeave={mouseLeaveHandler}
-            className="font-anton text-nowrap text-center text-[5rem]/[5rem] sm:text-[18rem]/[16rem]"
+            className="font-anton text-nowrap text-center text-[5rem]/[5rem] sm:text-[6rem]/[6rem] md:text-[7.5rem]/[7.5rem] lg:text-[9rem]/[9rem] xl:text-[12rem]/[12rem] 2xl:text-[18rem]/[16rem]"
           >
             PRANJAL DAS
           </p>
-        </div>
 
-        <div className="flex flex-col sm:flex-row w-full justify-between items-center text-[0.8rem] sm:text-[2rem]">
-          <div className="relative h-[3rem] w-full md:w-1/2 overflow-hidden">
+        <div className="flex flex-col w-full justify-center items-center ">
+          <div className="relative h-[2.5rem] md:h-[3rem] xl:h-[4rem] w-full overflow-hidden text-nowrap text-[2rem]/[2rem] xl:text-[3rem]/[3rem]">
             <p
               ref={(el) => (desigRef.current[0] = el)}
-              className="absolute top-0 left-0 text-center md:text-left w-full text-[2rem]"
+              className="absolute top-0 left-1/2 -translate-x-1/2 text-center"
             >
               FULLSTACK WEB DEVELOPER
             </p>
             <p
               ref={(el) => (desigRef.current[1] = el)}
-              className="absolute top-0 left-0 text-center md:text-left w-full text-[2rem]"
+              className="absolute top-0 left-1/2 -translate-x-1/2 text-center"
             >
               FRONTEND WEB DEVELOPER
             </p>
             <p
               ref={(el) => (desigRef.current[2] = el)}
-              className="absolute top-0 left-0 text-center md:text-left w-full text-[2rem]"
+              className="absolute top-0 left-1/2 -translate-x-1/2 text-center"
             >
               BACKEND WEB DEVELOPER
             </p>
           </div>
-          <div className="h-fit w-fit overflow-hidden">
+          <div className="h-fit w-fit overflow-hidden text-[0.8rem] sm:text-[1.2rem] xl:text-[2rem]">
             <p ref={textRef}>BASED IN ASSAM, GUWAHATI</p>
           </div>
         </div>

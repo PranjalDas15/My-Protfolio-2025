@@ -65,9 +65,9 @@ export const projects = [
     images: ['/assets/apdcl.png'],
     links: {
       github:
-        "https://www.google.com/webhp?hl=en&sa=X&ved=0ahUKEwjv5-GAzvaIAxXFyzgGHST4KFQQPAgI",
+        "https://github.com/PranjalDas15/Grievance-Deploy",
       deploy:
-        "https://www.google.com/webhp?hl=en&sa=X&ved=0ahUKEwjv5-GAzvaIAxXFyzgGHST4KFQQPAgI",
+        "https://grievance-deploy-1.onrender.com/",
     },
     desc: [
       "Grievance Portal is a web application built with AngularJS, Django, MongoDB, and TailwindCSS, using TypeScript.",
@@ -84,12 +84,6 @@ export const projects = [
       "Used techniques such as data preprocessing, classifier selection and Ensemble Learning, to achieve an accuracy of 80% in detecting COPD severity. I was responsible for the backend and model development for the web application using Python",
     technologies: [HTML, CSS, JavaScript, Python],
     images: ['/assets/copd.png'],
-    links: {
-      github:
-        "https://www.google.com/webhp?hl=en&sa=X&ved=0ahUKEwjv5-GAzvaIAxXFyzgGHST4KFQQPAgI",
-      deploy:
-        "https://www.google.com/webhp?hl=en&sa=X&ved=0ahUKEwjv5-GAzvaIAxXFyzgGHST4KFQQPAgI",
-    },
     desc: [
       "An Expert System for Early Diagnosis of COPD is a machine learning project built with Python (Flask), MongoDB, Scikit-learn, JavaScript, HTML, and CSS.",
       "Developed as a final year team project during college, focusing on early detection of COPD severity based on user input.",
@@ -97,6 +91,9 @@ export const projects = [
       "Ensemble learning techniques were used to improve the accuracy and reliability of the machine learning model.",
       "I was responsible for training the machine learning model and building the backend to integrate it with the web application.",
     ],
+    link: {
+      github: 'https://github.com/PranjalDas15/COPD-College'
+    }
   },
   {
     name: "Teacher Appoimntment Booking Portal",
@@ -151,6 +148,11 @@ export const SKILLS = [
   PHP,
   CPP,
 ];
+
+export const frontend = [ HTML, CSS, React, NextJs, GSAP, TailwindCSS ]
+export const backendAndDatabases = [ ExpressJs, NextJs, Django, MongoDB, MySQL ]
+export const languages = [ JavaScript, TypeScript, Python, PHP ]
+export const extras = [ Laravel, Angualar, CPP]
 
 export const aboutMe =
   "I'm a Computer Science Engineering graduate from Assam Down Town University, and I discovered my love for coding a bit later—around the 7th semester of my college journey. What began as curiosity quickly turned into a deep interest in web development. Since then, I've immersed myself in building full-stack applications using technologies like React, Next.js, Tailwind CSS, Node.js, and MongoDB. I'm focused on sharpening my skills and looking for opportunities to grow as a developer, contribute to meaningful projects, and keep learning.";

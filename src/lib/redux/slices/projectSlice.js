@@ -4,6 +4,7 @@ export const projectSlice = createSlice({
   name: "project",
   initialState: {
     isProjectOpen: false,
+    
   },
   reducers: {
     setIsProjectOpen(state, action) {
